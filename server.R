@@ -21,6 +21,7 @@ popData <- read.csv(fileName)
 #=============================================
 shinyServer( function(input, output, session){
 
+  output$table <- renderDataTable(popData)
   #Render the plot
   output$plot <- renderPlotly({
     #get the range f years

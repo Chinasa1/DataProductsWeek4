@@ -37,7 +37,10 @@ fluidPage(
                htmlOutput("text")
 
             ),#wellPanel
-            dataTableOutput('table')
+            wellPanel(
+              h4("World population historical data"),
+              dataTableOutput('table')
+            )
 
       )#Column
     )
