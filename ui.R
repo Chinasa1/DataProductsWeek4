@@ -29,7 +29,6 @@ fluidPage(
              #the plot
              plotlyOutput("plot"),
              verbatimTextOutput("hover"),
-             verbatimTextOutput("brush"),
              #result panel
              wellPanel(
                h4("Yearly diffirence"),

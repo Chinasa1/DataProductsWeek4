@@ -1,0 +1,77 @@
+```{r , echo=FALSE}
+library(plotly)
+library(dplyr)
+```
+Developing Data Product week 4 Assignment: World Population evolution
+========================================================
+author:
+date: November 9th, 2019
+autosize: true
+
+Overview
+========================================================
+
+-This presentation contains the documentation of the shiny app created to manipulate world population evolution since 1950.
+
+- The source data can be found in this site <https://www.worldometers.info/world-population/world-population-by-year/>
+
+- The application builds a plot of world population of the selected year range.
+
+- The yearly evolution is computed.
+
+Server UI Part 2
+========================================================
+
+The data is download from: https://raw.githubusercontent.com/Chinasa1/DataProductsWeek4/master/historical_pop.csv
+
+The year range is taken from user input
+```{r , echo=FALSE}
+dataUrl <- "https://raw.githubusercontent.com/Chinasa1/DataProductsWeek4/master/historical_pop.csv"
+fileName <- "historical_pop.csv"
+
+#download the data if it does not exists
+if(! file.exists(fileName)){
+  download.file(dataUrl, destfile = fileName, method = "curl")
+}
+#Load the data
+popData <- read.csv(fileName)
+
+#display the summary of the data
+head(popData, 2)
+```
+
+Server UI Part 2
+========================================================
+
+The data is taken in the range of the given years
+```{r, echo=FALSE}
+
+
+iMinYear <- 1970
+iMaxYear <- 2010
+
+tempData <- popData %>% filter(Year >=iMinYear & Year <= iMaxYear)
+
+```
+
+The population change is the calculated
+```{r}
+    maxPop <- popData[popData$Year == iMaxYear, 2]
+    minPop <- popData[popData$Year == iMinYear, 2]
+
+    #format the yearly difference of the population
+    diff <- format(maxPop-minPop, decimal.mark=",",  big.mark=", ",small.mark=".", small.interval=3)
+```
+
+The Conclusion
+========================================================
+
+With this course we've learned how to develop web application with R using shiny package
+
+This project allows us to practice and have hands-on with shiny
+
+Thou the application presented here is an easy one.
+
+The source code of the application can be found in [github]
+
+[github]: https://github.com/Chinasa1/DataProductsWeek4
