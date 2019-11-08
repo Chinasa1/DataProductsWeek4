@@ -66,10 +66,5 @@ shinyServer( function(input, output, session){
     }
   })
 
-  #Output data of the selected aera
-  output$brush <- renderPrint({
-    d <- event_data("plotly_selected")
-    if (is.null(d)) "Click and drag (i.e., select/lasso) appear here (double-click to clear)" else d
-  })
 
 })
